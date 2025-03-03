@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function GuessInput({ handleNewGuess }) {
+function GuessInput({ handleNewGuess, numOfGuess, isCorrect }) {
   const [input, setInput] = useState("");
 
   return (
@@ -26,6 +26,7 @@ function GuessInput({ handleNewGuess }) {
           onChange={(e) => {
             setInput(e.target.value);
           }}
+          disabled={numOfGuess === 6 || isCorrect}
         />
       </form>
     </>

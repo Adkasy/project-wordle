@@ -12,15 +12,31 @@ console.info({ answer });
 
 function Game() {
   const [arrOfGuess, setArrOfGuess] = useState([]);
+  const [numOfGuess, setNumOfGuess] = useState(0);
+  const [isCorrect, setIsCorrect] = useState(false);
 
   function handleNewGuess(newGuess) {
+    if (newGuess === answer) {
+      setIsCorrect(true);
+    }
+
     setArrOfGuess([...arrOfGuess, newGuess]);
+    setNumOfGuess((prev) => prev + 1);
   }
 
   return (
     <>
-      <GuessResult arrOfGuess={arrOfGuess} />
-      <GuessInput handleNewGuess={handleNewGuess} />
+      <GuessResult
+        arrOfGuess={arrOfGuess}
+        theAnswer={answer}
+        numOfGuess={numOfGuess}
+      />
+
+      <GuessInput
+        handleNewGuess={handleNewGuess}
+        numOfGuess={numOfGuess}
+        isCorrect={isCorrect}
+      />
     </>
   );
 }

@@ -1,31 +1,24 @@
-import React from "react";
+import React, { use, useEffect } from "react";
+import Guess from "../Guess/Guess";
 import { range } from "../../utils";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function GuessResult({ arrOfGuess }) {
+function GuessResult({ arrOfGuess, theAnswer, numOfGuess }) {
   return (
     <>
       <div className="guess-results">
-        {/* {arrOfGuess.map((perArr, index) => {
-          return (
-            <p className="guess" key={index}>
-              {perArr.split("").map((char, index) => {
-                return <span className="cell">{char}</span>;
-              })}
-            </p>
-          );
-        })} */}
+        {/* {arrOfGuess.map((guessWord, rowIndex) => (
+          <Guess guessWord={guessWord} key={rowIndex} />
+        ))} */}
 
-        {range(0, 6, 1).map(() => {
-          return (
-            <p className="guess">
-              <span className="cell"></span>
-              <span className="cell"></span>
-              <span className="cell"></span>
-              <span className="cell"></span>
-              <span className="cell"></span>
-            </p>
-          );
-        })}
+        {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
+          <Guess
+            guessWord={arrOfGuess[num]}
+            key={num}
+            theAnswer={theAnswer}
+            numOfGuess={numOfGuess}
+          />
+        ))}
       </div>
     </>
   );
